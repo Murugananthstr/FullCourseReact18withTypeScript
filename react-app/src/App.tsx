@@ -1,11 +1,14 @@
-import Alert from "./components/Alert";
+import Button from "./components/Button";
 
 function App() {
+  const handleClick = () => {
+    console.log("Clicked");
+  };
   return (
     <div>
-      <Alert>
-        <span> This is example passing children to the components</span>
-      </Alert>
+      <Button onClick={handleClick} color="secondary">
+        Sample Button
+      </Button>
     </div>
   );
 }
