@@ -1,25 +1,11 @@
-import ListGroup from "./components/ListGroup";
+import Alert from "./components/Alert";
 
 function App() {
-  const items = [
-    "Tokyo",
-    "Sans Fancisco",
-    "India",
-    "British Columbia",
-    "Toranto",
-  ];
-
-  const handleSelectItem = (item: string) => {
-    console.log(item);
-  };
-
   return (
     <div>
-      <ListGroup
-        items={items}
-        heading="Cities"
-        onSelectedItem={handleSelectItem}
-      />
+      <Alert>
+        <span> This is example passing children to the components</span>
+      </Alert>
     </div>
   );
 }
