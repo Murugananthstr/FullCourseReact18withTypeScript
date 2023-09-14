@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { MouseEvent } from "react";
-import "./ListGroup.css";
+import styles from "./ListGroup.module.css";
 
 interface listGroupProps {
   items: string[];
@@ -14,7 +14,7 @@ function ListGroup({ items, heading, onSelectedItem }: listGroupProps) {
   return (
     <>
       <h1>{heading}</h1>
-      <ul className="list-group">
+      <ul className={styles["list-group"]}>
         {items.map((item, index) => (
           <li
             key={item}
