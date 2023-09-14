@@ -14,7 +14,7 @@ function ListGroup({ items, heading, onSelectedItem }: listGroupProps) {
   return (
     <>
       <h1>{heading}</h1>
-      <ul className={styles["list-group"]}>
+      <ul className={styles.listGroup}>
         {items.map((item, index) => (
           <li
             key={item}
