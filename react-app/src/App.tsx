@@ -1,14 +1,25 @@
 import Button from "./components/Button";
+import ListGroup from "./components/ListGroup";
 
 function App() {
-  const handleClick = () => {
-    console.log("Clicked");
+  const cities = [
+    "New Delhi",
+    "Chennai",
+    "Mumbai",
+    "Vancouver",
+    "Heathrow",
+    "Torranto",
+    "Ontaria",
+    "Calgary",
+  ];
+
+  const handleClick = (cityName: string) => {
+    console.log(cityName);
   };
+
   return (
     <div>
-      <Button onClick={handleClick} color="secondary">
-        Sample Button
-      </Button>
+      <ListGroup items={cities} heading="Cities" onSelectedItem={handleClick} />
     </div>
   );
 }

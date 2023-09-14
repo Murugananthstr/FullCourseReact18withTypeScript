@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { MouseEvent } from "react";
+import "./ListGroup.css";
 
 interface listGroupProps {
   items: string[];
