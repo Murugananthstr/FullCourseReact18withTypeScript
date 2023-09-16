@@ -32,11 +32,11 @@ function ListGroup({ items, heading, onSelectedItem }: listGroupProps) {
         {items.map((item, index) => (
           <ListItem
             key={item}
+            active={index == selectedIndex}
             onClick={() => {
               setSelectedIndex(index);
               onSelectedItem(item);
             }}
-            active={index == selectedIndex}
           >
             {item}
           </ListItem>
