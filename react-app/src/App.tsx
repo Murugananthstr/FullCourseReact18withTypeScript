@@ -9,7 +9,7 @@ function App() {
         color="primary"
         onClick={() => console.log("Button Clicked")}
       />
-      <Like />
+      <Like onClick={() => console.log("Heart Button Clicked")} />
     </div>
   );
 }
