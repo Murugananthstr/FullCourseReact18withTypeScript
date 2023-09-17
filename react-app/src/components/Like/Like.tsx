@@ -3,15 +3,17 @@ import { BsFillHeartFill } from "react-icons/bs";
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 
 interface Props {
-  onClick: () => void;
+  onClick: (statInfo: string) => void;
 }
 
 const Like = ({ onClick }: Props) => {
   const [status, setStatus] = useState(true);
 
   const handleToggle = () => {
+    onClick(
+      `${status ? "Clicked on Filled Heard" : "Clicked on not Filled Heart"}`
+    );
     setStatus(!status);
-    onClick();
   };
 
   if (status) return <BsSuitHeartFill size="40" onClick={handleToggle} />;
