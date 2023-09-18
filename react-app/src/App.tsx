@@ -4,31 +4,23 @@ import Like from "./components/Like/Like";
 import Message from "./components/Message";
 
 function App() {
-  const [tag, setTag] = useState(["happy", "cheerful"]);
-
-  const handleClick = () => {
-    //Add to the array
-    setTag([...tag, "Exciting"]);
-    //tag.push("happinesss");  this is reset the entire array, so not recommended
-  };
-
-  const handleRemoveClick = () => {
-    // Remove the array
-    setTag(tag.filter((tag) => tag != "cheerful"));
-  };
+  const [bugs, setBugs] = useState([
+    { bugId: 1, title: "Bug 1", fixed: false },
+    { bugId: 2, title: "Bug 2", fixed: false },
+  ]);
 
   const handleUpdateClick = () => {
-    // Remove the array
-    setTag(tag.map((tag) => (tag === "happy" ? "Happiness" : tag)));
+    // Updating the array object
+    setBugs(
+      bugs.map((bug) => (bug.bugId === 2 ? { ...bug, fixed: true } : bug))
+    );
   };
 
   return (
     <div>
-      <pre>{JSON.stringify(tag, null, 2)}</pre>
+      <pre>{JSON.stringify(bugs, null, 2)}</pre>
 
-      <button onClick={handleClick}>Add to Array</button>
-      <button onClick={handleUpdateClick}>Update to the Array</button>
-      <button onClick={handleRemoveClick}>Remove from Array</button>
+      <button onClick={handleUpdateClick}>Update the Array Object</button>
     </div>
   );
 }
