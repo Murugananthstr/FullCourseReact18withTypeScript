@@ -1,25 +1,26 @@
-import Button from "./components/Button";
-import ListGroup from "./components/ListGroup";
+import { useState } from "react";
+import Button from "./components/Button/Button";
+import Like from "./components/Like/Like";
+import Message from "./components/Message";
 
 function App() {
-  const cities = [
-    "New Delhi",
-    "Chennai",
-    "Mumbai",
-    "Vancouver",
-    "Heathrow",
-    "Torranto",
-    "Ontaria",
-    "Calgary",
-  ];
+  const [bugs, setBugs] = useState([
+    { bugId: 1, title: "Bug 1", fixed: false },
+    { bugId: 2, title: "Bug 2", fixed: false },
+  ]);
 
-  const handleClick = (cityName: string) => {
-    console.log(cityName);
+  const handleUpdateClick = () => {
+    // Updating the array object
+    setBugs(
+      bugs.map((bug) => (bug.bugId === 2 ? { ...bug, fixed: true } : bug))
+    );
   };
 
   return (
     <div>
-      <ListGroup items={cities} heading="Cities" onSelectedItem={handleClick} />
+      <pre>{JSON.stringify(bugs, null, 2)}</pre>
+
+      <button onClick={handleUpdateClick}>Update the Array Object</button>
     </div>
   );
 }
