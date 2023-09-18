@@ -4,27 +4,31 @@ import Like from "./components/Like/Like";
 import Message from "./components/Message";
 
 function App() {
-  const [customer, setCustomer] = useState({
-    name: "Ananth",
-    Address: {
-      City: "Surrey",
-      ZipCode: "V3S 5G2",
-    },
-  });
+  const [tag, setTag] = useState(["happy", "cheerful"]);
 
   const handleClick = () => {
-    setCustomer({
-      ...customer,
-      Address: { ...customer.Address, City: "Bellevue" },
-    });
+    //Add to the array
+    setTag([...tag, "Exciting"]);
+    //tag.push("happinesss");  this is reset the entire array, so not recommended
   };
+
+  const handleRemoveClick = () => {
+    // Remove the array
+    setTag(tag.filter((tag) => tag != "cheerful"));
+  };
+
+  const handleUpdateClick = () => {
+    // Remove the array
+    setTag(tag.map((tag) => (tag === "happy" ? "Happiness" : tag)));
+  };
+
   return (
     <div>
-      <pre>{JSON.stringify(customer, null, 2)}</pre>
+      <pre>{JSON.stringify(tag, null, 2)}</pre>
 
-      <button onClick={handleClick}>
-        Click Here to Update the Customer object
-      </button>
+      <button onClick={handleClick}>Add to Array</button>
+      <button onClick={handleUpdateClick}>Update to the Array</button>
+      <button onClick={handleRemoveClick}>Remove from Array</button>
     </div>
   );
 }
