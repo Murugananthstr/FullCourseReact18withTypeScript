@@ -7,9 +7,10 @@ export interface Product {
 
 interface ShoppingCartProps {
   products: Product[];
+  onClick: () => void;
 }
 
-const ShoppingCart = ({ products }: ShoppingCartProps) => {
+const ShoppingCart = ({ products, onClick }: ShoppingCartProps) => {
   return (
     <div>
       <p> No of Products :</p>
@@ -18,6 +19,7 @@ const ShoppingCart = ({ products }: ShoppingCartProps) => {
           <li key={x.productId}>{x.title}</li>
         ))}
       </ul>
+      <button onClick={onClick}>Remove the Product</button>
     </div>
   );
 };

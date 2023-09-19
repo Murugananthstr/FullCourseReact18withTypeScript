@@ -21,8 +21,7 @@ function App() {
   return (
     <div>
       <NavBar noOfProducts={products.length} />
-      <ShoppingCart products={products} />
-      <button onClick={handleRemovProduct}>Remove the Product</button>
+      <ShoppingCart products={products} onClick={handleRemovProduct} />
     </div>
   );
 }
