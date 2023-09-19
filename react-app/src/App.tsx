@@ -21,7 +21,14 @@ function App() {
   return (
     <div>
       <NavBar noOfProducts={products.length} />
-      <ShoppingCart products={products} onClick={handleRemovProduct} />
+      <ShoppingCart
+        products={products}
+        onRemove={handleRemovProduct}
+        onClear={() => setProducts([])}
+        onAdd={() =>
+          setProducts([...products, { productId: 3, title: "Product 3" }])
+        }
+      />
     </div>
   );
 }

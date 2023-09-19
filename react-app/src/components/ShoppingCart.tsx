@@ -7,10 +7,17 @@ export interface Product {
 
 interface ShoppingCartProps {
   products: Product[];
-  onClick: () => void;
+  onRemove: () => void;
+  onClear: () => void;
+  onAdd: () => void;
 }
 
-const ShoppingCart = ({ products, onClick }: ShoppingCartProps) => {
+const ShoppingCart = ({
+  products,
+  onRemove,
+  onClear,
+  onAdd,
+}: ShoppingCartProps) => {
   return (
     <div>
       <p> No of Products :</p>
@@ -19,7 +26,9 @@ const ShoppingCart = ({ products, onClick }: ShoppingCartProps) => {
           <li key={x.productId}>{x.title}</li>
         ))}
       </ul>
-      <button onClick={onClick}>Remove the Product</button>
+      <button onClick={onRemove}>Remove the Product</button>
+      <button onClick={onClear}>Clean all the Product</button>
+      <button onClick={onAdd}>Add new Product </button>
     </div>
   );
 };
