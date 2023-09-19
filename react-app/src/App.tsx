@@ -1,24 +1,26 @@
 import { useState } from "react";
 
 function App() {
-  const [pizza, setPizza] = useState({
-    name: "Spicy Pepperoni",
-    toppings: ["Mushroom"],
+  const [cart, setCart] = useState({
+    discount: 0.1,
+    items: [
+      { id: 1, title: "Product 1", quantity: 1 },
+      { id: 2, title: "Product 2", quantity: 5 },
+    ],
   });
 
-  const handleAddingToppings = (toppingsName: string) => {
-    setPizza({ ...pizza, toppings: [...pizza.toppings, toppingsName] });
+  const handleSetCartQuantity = () => {
+    const dupCart = cart.items.map((x) =>
+      x.id == 2 ? { ...x, quantity: x.quantity + 1 } : x
+    );
+    setCart({ ...cart, items: [...dupCart] });
   };
 
   return (
     <div>
-      <pre>{JSON.stringify(pizza, null, 2)}</pre>
-      <button onClick={() => handleAddingToppings("Cheese")}> Cheese</button>
-      <button onClick={() => handleAddingToppings("Green Bell Pepper")}>
-        Green Bell Pepper
-      </button>
-      <button onClick={() => handleAddingToppings("Black olives")}>
-        Black olives
+      <pre>{JSON.stringify(cart, null, 2)}</pre>
+      <button onClick={() => handleSetCartQuantity()}>
+        Increase the Quantity of Product 2
       </button>
     </div>
   );
