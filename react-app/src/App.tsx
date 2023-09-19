@@ -3,33 +3,26 @@ import Button from "./components/Button/Button";
 import Like from "./components/Like/Like";
 import Message from "./components/Message";
 import produce from "immer";
+import NavBar from "./components/NavBar";
+import ShoppingCart, { Product } from "./components/ShoppingCart";
 
 function App() {
-  const [bugs, setBugs] = useState([
-    { bugId: 1, title: "Bug 1", fixed: false },
-    { bugId: 2, title: "Bug 2", fixed: false },
-  ]);
+  const items: Product[] = [
+    { productId: 1, title: "Product 1" },
+    { productId: 2, title: "Product 2" },
+  ];
 
-  const handleUpdateClick = () => {
-    // Updating the array object
-    // setBugs(
-    //   bugs.map((bug) => (bug.bugId === 2 ? { ...bug, fixed: true } : bug))
-    // );
+  const [products, setProducts] = useState(items);
 
-    // updating the object using immer produce function
-    setBugs(
-      produce((draft) => {
-        const bug = draft.find((bug) => bug.bugId == 1);
-        if (bug) bug.fixed = true;
-      })
-    );
+  const handleRemovProduct = () => {
+    setProducts(products.filter((x) => x.productId != 2));
   };
 
   return (
     <div>
-      <pre>{JSON.stringify(bugs, null, 2)}</pre>
-
-      <button onClick={handleUpdateClick}>Update the Array Object</button>
+      <NavBar noOfProducts={products.length} />
+      <ShoppingCart products={products} />
+      <button onClick={handleRemovProduct}>Remove the Product</button>
     </div>
   );
 }
