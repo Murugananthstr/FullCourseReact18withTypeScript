@@ -1,27 +1,13 @@
 import { useState } from "react";
+import ExpandableText from "./components/ExapandableText/ExpandableText";
 
 function App() {
-  const [cart, setCart] = useState({
-    discount: 0.1,
-    items: [
-      { id: 1, title: "Product 1", quantity: 1 },
-      { id: 2, title: "Product 2", quantity: 5 },
-    ],
-  });
-
-  const handleSetCartQuantity = () => {
-    const dupCart = cart.items.map((x) =>
-      x.id == 2 ? { ...x, quantity: x.quantity + 1 } : x
-    );
-    setCart({ ...cart, items: [...dupCart] });
-  };
-
   return (
     <div>
-      <pre>{JSON.stringify(cart, null, 2)}</pre>
-      <button onClick={() => handleSetCartQuantity()}>
-        Increase the Quantity of Product 2
-      </button>
+      <ExpandableText
+        textContent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ipsam reprehenderit minima porro totam pariatur harum quod dolore, officia quo exercitationem dignissimos magnam eligendi, quisquam, alias debitis fugiat quidem nisi?"
+        maxLengthToDisplay={50}
+      />
     </div>
   );
 }
