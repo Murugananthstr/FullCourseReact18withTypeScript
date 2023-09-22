@@ -1,7 +1,7 @@
 import React, { FormEvent, useRef, useState } from "react";
 
 const Form = () => {
-  const [person, setPerson] = useState({ name: "", age: 0 });
+  const person = { name: "", age: 0 };
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
 
