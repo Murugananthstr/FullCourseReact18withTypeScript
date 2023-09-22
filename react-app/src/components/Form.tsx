@@ -17,6 +17,7 @@ const Form = () => {
         <input
           id="name"
           type="text"
+          value={person.name}
           onChange={(event) =>
             setPerson({ ...person, name: event.target.value })
           }
@@ -30,6 +31,7 @@ const Form = () => {
         <input
           id="Age"
           type="number"
+          value={person.age}
           onChange={(event) =>
             setPerson({ ...person, age: parseInt(event.target.value) })
           }
