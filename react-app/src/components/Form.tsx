@@ -1,11 +1,9 @@
 import { FieldValues, useForm } from "react-hook-form";
 
 const Form = () => {
-  const { register, handleSubmit, formState } = useForm(); // register and handleSubmit is from react hook forms to handle the data from from control
-
-  const onSubmit = (data: FieldValues) => {
-    console.log(formState);
-  };
+  const { register, handleSubmit, formState } = useForm();
+  console.log(formState.errors);
+  const onSubmit = (data: FieldValues) => {};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -16,7 +14,7 @@ const Form = () => {
         <input
           id="name"
           type="text"
-          {...register("name")} // this will add onBlur, onChange, ref attributes to this input control
+          {...register("name", { required: true, minLength: 5 })}
           className="form-control"
         />
       </div>
@@ -27,7 +25,7 @@ const Form = () => {
         <input
           id="Age"
           type="number"
-          {...register("age")} // this will add onBlur, onChange, ref attributes to this input control, meaning similar to other attributes
+          {...register("age")}
           className="form-control"
         />
       </div>
