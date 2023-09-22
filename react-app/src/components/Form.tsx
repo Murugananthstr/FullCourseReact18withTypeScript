@@ -1,15 +1,14 @@
-import React, { FormEvent, useRef, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 
 const Form = () => {
-  const [person, setPerson] = useState({ name: "", age: 0 });
+  const { register, handleSubmit } = useForm(); // register and handleSubmit is from react hook forms to handle the data from from control
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log(person);
+  const onSubmit = (data: FieldValues) => {
+    console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-3">
         <label htmlFor="name" className="from-label">
           Name :
@@ -17,10 +16,7 @@ const Form = () => {
         <input
           id="name"
           type="text"
-          value={person.name}
-          onChange={(event) =>
-            setPerson({ ...person, name: event.target.value })
-          }
+          {...register("name")} // this will add onBlur, onChange, ref attributes to this input control
           className="form-control"
         />
       </div>
@@ -31,10 +27,7 @@ const Form = () => {
         <input
           id="Age"
           type="number"
-          value={person.age}
-          onChange={(event) =>
-            setPerson({ ...person, age: parseInt(event.target.value) })
-          }
+          {...register("age")} // this will add onBlur, onChange, ref attributes to this input control, meaning similar to other attributes
           className="form-control"
         />
       </div>
