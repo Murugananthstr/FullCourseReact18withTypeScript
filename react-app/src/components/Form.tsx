@@ -1,10 +1,10 @@
 import { FieldValues, useForm } from "react-hook-form";
 
 const Form = () => {
-  const { register, handleSubmit } = useForm(); // register and handleSubmit is from react hook forms to handle the data from from control
+  const { register, handleSubmit, formState } = useForm(); // register and handleSubmit is from react hook forms to handle the data from from control
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
+    console.log(formState);
   };
 
   return (
