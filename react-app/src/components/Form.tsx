@@ -1,9 +1,20 @@
 import { FieldValues, useForm } from "react-hook-form";
 
+interface FormData {
+  name: string;
+  age: number;
+}
+
 const Form = () => {
-  const { register, handleSubmit, formState } = useForm();
-  console.log(formState.errors);
-  const onSubmit = (data: FieldValues) => {};
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>(); // formState : {errors } this is called nested destructring
+
+  const onSubmit = (data: FieldValues) => {
+    console.log(data);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -17,6 +28,10 @@ const Form = () => {
           {...register("name", { required: true, minLength: 5 })}
           className="form-control"
         />
+        <p className="text-danger">
+          {errors?.name?.type == "required" && "Please enter the name"}
+          {errors?.name?.type == "minLength" && "The Name fields is required"}
+        </p>
       </div>
       <div className="mb-3">
         <label htmlFor="Age" className="for-label">
@@ -25,9 +40,12 @@ const Form = () => {
         <input
           id="Age"
           type="number"
-          {...register("age")}
+          {...register("age", { required: true, minLength: 1 })}
           className="form-control"
         />
+        <p className="text-danger">
+          {errors?.age?.type == "required" && "Please enter the age"}
+        </p>
       </div>
       <button type="submit" className="btn btn-primary">
         Submit

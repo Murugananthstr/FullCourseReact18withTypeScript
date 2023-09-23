@@ -1,0 +1,87 @@
+git
+----------
+
+create a local folder and start init a git
+
+git init
+....
+git add . or git add "filenames"
+
+git commit -m "message to commit"
+
+git branch -b "new branch name"
+
+merging from master to develop > 
+git checkout develop and 
+git merge master
+
+git checkout master
+
+
+
+git remote add origin https://github.com/Murugananthstr/FullCourseReact18withTypeScript.git
+
+git checkout master
+ git push -u origin master
+ 
+ git config --global user.name "Ananth"
+ git config --global user.email "Ananthsoft@gmail.com"
+
+
+----------------
+
+
+
+npm ceate vite@latest
+
+or
+
+npm create vite@4.1.0
+
+give the project name and select react and typescript
+
+cd react-app (get into the folder name)
+npm i or npm install
+
+npm run dev  --> this will run our web server and host the application
+
+
+Installing Boostrap
+
+npm i bootstrap@5.2.3
+
+To Switch between the components
+Press Cntrl + P to switch to other components by simply selecting the appropriate components from the drop down
+
+Ctrl + D to select the next occurance the same words
+Shift + ALT + F to format the documents
+rafce ==> Simple snippet to create function component (React Arrow Function Component Export)
+
+install React Develop Tools extension to the Browsers(Edge or Chorme) to check the Components properties in browser
+
+Inatalling Styled Components library
+
+npm i styled-components
+
+incase of the import for styled-components is not recognized we have to install this below specified library
+npm i @types/styled-components
+
+Adding Icons
+here we are going to use very famous library react icons
+npm i react-icons or npm i react-icons@4.7.1
+
+Installing immer library
+
+npm i immer@9.0.19
+
+Installing React Hook Forms
+npm i react-hook-form@7.43
+
+Defined the shape of form using interface as FormData for the type safety
+
+
+
+
+
+
+
