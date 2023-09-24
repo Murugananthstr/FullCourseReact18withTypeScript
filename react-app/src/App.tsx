@@ -5,45 +5,55 @@ import ExpenseList, {
 import ExpenseFilter from "./components/expense-tracker/components/ExpenseFilter";
 
 function App() {
-  const prodCategory: string[] = [
-    "All Category",
-    "Groceries",
-    "Utilities",
-    "Entertainment",
-  ];
-
   const expensesDetails: Expense[] = [
     {
       id: 1,
       description: "Milk",
       amount: 5.0,
-      category: prodCategory[1],
+      category: "Groceries",
     },
     {
       id: 2,
       description: "Eggs",
       amount: 10.0,
-      category: prodCategory[1],
+      category: "Groceries",
     },
     {
       id: 3,
       description: "Electricity",
       amount: 100.0,
-      category: prodCategory[2],
+      category: "Utilities",
     },
     {
       id: 4,
       description: "Movies",
       amount: 15.0,
-      category: prodCategory[3],
+      category: "Entertainment",
     },
     {
       id: 5,
       description: "Milk",
       amount: 5.0,
-      category: prodCategory[1],
+      category: "Groceries",
+    },
+    {
+      id: 6,
+      description: "Pencil",
+      amount: 5.0,
+      category: "Stationary",
+    },
+    {
+      id: 7,
+      description: "Pen",
+      amount: 5.0,
+      category: "Stationary",
     },
   ];
+
+  const categories = Array.from(
+    new Set(expensesDetails.map((x) => x.category))
+  );
+  categories.unshift("All Category");
 
   const [expense, setExpense] = useState(expensesDetails);
 
@@ -63,7 +73,7 @@ function App() {
     <div>
       <div className="mb-3">
         <ExpenseFilter
-          categories={prodCategory}
+          categories={categories}
           onSelectCategory={handleSelectCategory}
         />
       </div>
