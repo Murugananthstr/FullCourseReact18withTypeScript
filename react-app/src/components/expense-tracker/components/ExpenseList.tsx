@@ -13,6 +13,7 @@ interface Props {
 }
 
 const ExpenseList = ({ expenses, onDelete }: Props) => {
+  if (!expenses) return null;
   return (
     <div>
       <table className="table table-border">
