@@ -1,16 +1,26 @@
 import { FieldValues, useForm } from "react-hook-form";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-interface FormData {
-  name: string;
-  age: number;
-}
+const schema = z.object({
+  name: z
+    .string()
+    .min(5, { message: "Name must be atleast 5 characters" })
+    .max(50, { message: "This name cannot exceed more than 50 characters" }),
+  age: z
+    .number({ invalid_type_error: "Age field is required." })
+    .positive({ message: " Age should be positive number." })
+    .min(18, { message: "Age must be greater than or equal to 18." }),
+});
+
+type FormData = z.infer<typeof schema>;
 
 const Form = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>(); // formState : {errors } this is called nested destructring
+  } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const onSubmit = (data: FieldValues) => {
     console.log(data);
@@ -25,13 +35,10 @@ const Form = () => {
         <input
           id="name"
           type="text"
-          {...register("name", { required: true, minLength: 5 })}
+          {...register("name")}
           className="form-control"
         />
-        <p className="text-danger">
-          {errors?.name?.type == "required" && "Please enter the name"}
-          {errors?.name?.type == "minLength" && "The Name fields is required"}
-        </p>
+        {errors.name && <p className="text-danger">{errors.name.message}</p>}
       </div>
       <div className="mb-3">
         <label htmlFor="Age" className="for-label">
@@ -40,12 +47,10 @@ const Form = () => {
         <input
           id="Age"
           type="number"
-          {...register("age", { required: true, minLength: 1 })}
+          {...register("age", { valueAsNumber: true })}
           className="form-control"
         />
-        <p className="text-danger">
-          {errors?.age?.type == "required" && "Please enter the age"}
-        </p>
+        {errors.age && <p className="text-danger">{errors.age.message}</p>}
       </div>
       <button type="submit" className="btn btn-primary">
         Submit

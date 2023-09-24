@@ -79,6 +79,15 @@ npm i react-hook-form@7.43
 
 Defined the shape of form using interface as FormData for the type safety
 
+Here we are introducing Zod library for schema based validation along with the React Hook Forms
+Installing Validation Library ZOD: to create schema object using z from Zod
+    npm i zod@3.20.6
+
+Resolver : Integrating zod with react hook forms using below library
+
+npm i @hookform/resolvers@2.9.11
+
+use type FormData for Type interference 
 
 
 
