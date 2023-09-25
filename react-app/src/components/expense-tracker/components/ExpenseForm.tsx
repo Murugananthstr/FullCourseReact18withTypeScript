@@ -23,10 +23,11 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const Expenses = ({ onAddExpense, categories = [] }: Props) => {
+const ExpenseForm = ({ onAddExpense, categories = [] }: Props) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
@@ -38,6 +39,7 @@ const Expenses = ({ onAddExpense, categories = [] }: Props) => {
       description: data.description,
     };
     onAddExpense(newItem);
+    reset();
   };
   return (
     <div>
@@ -98,4 +100,4 @@ const Expenses = ({ onAddExpense, categories = [] }: Props) => {
   );
 };
 
-export default Expenses;
+export default ExpenseForm;

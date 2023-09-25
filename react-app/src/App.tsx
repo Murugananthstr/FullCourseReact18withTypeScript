@@ -3,7 +3,7 @@ import ExpenseList, {
   Expense,
 } from "./components/expense-tracker/components/ExpenseList";
 import ExpenseFilter from "./components/expense-tracker/components/ExpenseFilter";
-import Expenses from "./components/expense-tracker/components/Expenses";
+import ExpenseForm from "./components/expense-tracker/components/ExpenseForm";
 
 function App() {
   const expensesDetails: Expense[] = [
@@ -74,7 +74,7 @@ function App() {
   return (
     <div>
       <div className="m-5">
-        <Expenses
+        <ExpenseForm
           categories={categories.filter((x) => x != "All Category")}
           onAddExpense={handleAddExpense}
         />
