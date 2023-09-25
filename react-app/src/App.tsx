@@ -3,6 +3,7 @@ import ExpenseList, {
   Expense,
 } from "./components/expense-tracker/components/ExpenseList";
 import ExpenseFilter from "./components/expense-tracker/components/ExpenseFilter";
+import Expenses from "./components/expense-tracker/components/Expenses";
 
 function App() {
   const expensesDetails: Expense[] = [
@@ -50,12 +51,12 @@ function App() {
     },
   ];
 
+  const [expense, setExpense] = useState(expensesDetails);
+
   const categories = Array.from(
     new Set(expensesDetails.map((x) => x.category))
   );
   categories.unshift("All Category");
-
-  const [expense, setExpense] = useState(expensesDetails);
 
   const handleDelete = (id: number) => {
     setExpense(expense.filter((x) => x.id != id));
@@ -64,13 +65,23 @@ function App() {
   const handleSelectCategory = (category: string) => {
     setExpense(
       category === "All Category"
-        ? expensesDetails
-        : expensesDetails.filter((x) => x.category === category)
+        ? expense
+        : expense.filter((x) => x.category === category)
     );
+  };
+
+  const handleAddExpense = (newItem: Expense) => {
+    setExpense([...expense, newItem]);
   };
 
   return (
     <div>
+      <div className="m-5">
+        <Expenses
+          categories={categories.filter((x) => x != "All Category")}
+          onAddExpense={handleAddExpense}
+        />
+      </div>
       <div className="mb-3">
         <ExpenseFilter
           categories={categories}
