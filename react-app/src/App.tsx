@@ -52,22 +52,19 @@ function App() {
   ];
 
   const [expense, setExpense] = useState(expensesDetails);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const categories = Array.from(
-    new Set(expensesDetails.map((x) => x.category))
-  );
+  const visibleExpenses = selectedCategory
+    ? expense.filter((x) => x.category === selectedCategory)
+    : expense;
+
+  const categories = Array.from(new Set(expense.map((x) => x.category)));
   categories.unshift("All Category");
 
-  const handleDelete = (id: number) => {
-    setExpense(expense.filter((x) => x.id != id));
-  };
-
   const handleSelectCategory = (category: string) => {
-    setExpense(
-      category === "All Category"
-        ? expense
-        : expense.filter((x) => x.category === category)
-    );
+    category != "All Category"
+      ? setSelectedCategory(category)
+      : setSelectedCategory("");
   };
 
   const handleAddExpense = (newItem: Expense) => {
@@ -88,7 +85,10 @@ function App() {
           onSelectCategory={handleSelectCategory}
         />
       </div>
-      <ExpenseList expenses={expense} onDelete={handleDelete} />
+      <ExpenseList
+        expenses={visibleExpenses}
+        onDelete={(id) => setExpense(expense.filter((x) => x.id != id))}
+      />
     </div>
   );
 }
